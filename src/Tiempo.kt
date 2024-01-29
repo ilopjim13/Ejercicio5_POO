@@ -1,6 +1,29 @@
-class Tiempo (private var hora:Int) {
+class Tiempo (hora:Int) {
+    var hora:Int = hora
     private var minutos:Int = 0
+        set(value) {
+            require(value in 0..59)
+            field = value
+        }
     private var segundos:Int = 0
+        set(value) {
+            require(value in 0..59)
+            field = value
+        }
+
+    init {
+        require(this.hora in 0..24) {"La hora no puede ser mayor a 24"}
+
+        if (this.minutos> 59) {
+            this.hora += this.minutos/60
+            this.minutos %= 60
+        }
+
+        if (this.segundos> 59) {
+            this.minutos += this.segundos/60
+            this.segundos %= 60
+        }
+    }
 
     constructor(hora: Int, minutos: Int) : this(hora) {
         this.minutos = minutos
@@ -15,14 +38,6 @@ class Tiempo (private var hora:Int) {
         return "${this.hora}h ${this.minutos}m ${this.segundos}s"
     }
 
-
-    fun setHora(hora: String) {
-        if (hora.toInt() > 24) {
-            println("La hora no puede ser mayor a 24")
-            print("Introduce la hora: ")
-            this.setHora(readln())
-        }
-    }
 
     fun setMinutos(minutos: String) {
         try {

@@ -2,7 +2,7 @@
 fun main() {
     val hora1 = Tiempo(1)
     print("Introduce la hora: ")
-    hora1.setHora(readln())
+    hora1.hora = readln().toInt()
     print("Introduce los minutos: ")
     hora1.setMinutos(readln())
     print("Introduce los segundos: ")
