@@ -12,7 +12,7 @@ class Tiempo (hora:Int) {
         }
 
     init {
-        require(this.hora in 0..24) {"La hora no puede ser mayor a 24"}
+        require(this.hora in 0..23) {"La hora no puede ser mayor a 23"}
 
         if (this.minutos> 59) {
             this.hora += this.minutos/60
@@ -39,33 +39,6 @@ class Tiempo (hora:Int) {
     }
 
 
-    fun setMinutos(minutos: String) {
-        try {
-            this.minutos = minutos.toInt()
-            while (this.minutos >= 60) {
-                this.minutos -= 60
-                this.hora += 1
-            }
-        } catch (e:Exception) {
-            println("Error los segundos introducidos no son válidos.")
-            print("Introduce los segundos: ")
-            this.setMinutos(readln())
-        }
-    }
 
-    fun setSegundos(segundos: String) {
-        try {
-            this.segundos = segundos.toInt()
-            while (this.segundos >= 60) {
-                this.segundos -= 60
-                this.minutos += 1
-            }
-        } catch (e:Exception) {
-            println("Error los segundos introducidos no son válidos.")
-            print("Introduce los segundos: ")
-            this.setSegundos(readln())
-        }
-
-    }
 
 }
